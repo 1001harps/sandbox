@@ -7,20 +7,25 @@ import { DrumMachinePage } from "./pages/drum-machine.tsx";
 import { AppContextProvider } from "./app-context.tsx";
 import { AppContextLoader } from "./components/AppContextLoader.tsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <IndexPage />,
+    },
+    {
+      path: "/drum-machine",
+      element: (
+        <AppContextLoader>
+          <DrumMachinePage />
+        </AppContextLoader>
+      ),
+    },
+  ],
   {
-    path: "/",
-    element: <IndexPage />,
-  },
-  {
-    path: "/drum-machine",
-    element: (
-      <AppContextLoader>
-        <DrumMachinePage />
-      </AppContextLoader>
-    ),
-  },
-]);
+    basename: import.meta.env.BASE_URL,
+  }
+);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <AppContextProvider>
