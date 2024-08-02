@@ -1,11 +1,12 @@
 import { List } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export const IndexPage = () => {
   return (
     <>
       <List>
         <li>
-          <a href={`/drum-machine`}>drum machine</a>
+          <Link to="/drum-machine">drum machine</Link>
         </li>
       </List>
     </>
