@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../app-context";
 
@@ -20,8 +20,8 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Box>
-      <Heading display="flex" bg="black" p="16px" color="white">
-        <Text>9hsandbox</Text>
+      <Heading display="flex" bg="#00a4ff" p="16px" color="white">
+        <Image src="9h-logo.svg" maxH="50px"></Image>
 
         {appContext.loaded && (
           <Box ml="auto">

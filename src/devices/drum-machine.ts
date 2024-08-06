@@ -5,7 +5,7 @@ export class DrumMachine extends SampleBankDevice {
     const files = [
       "/samples/drums/bd.wav",
       "/samples/drums/sd.wav",
-      "/samples/drums/cp.wav",
+      "/samples/drums/lt.wav",
       "/samples/drums/hh.wav",
     ];
 
