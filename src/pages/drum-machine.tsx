@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Grid,
-  HStack,
-  Stack,
-  Image,
-  Flex,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, HStack, Image, Stack } from "@chakra-ui/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../app-context";
 import { DrumName, Drums } from "../components/Drums";

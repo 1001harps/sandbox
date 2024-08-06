@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Image } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../app-context";
 
