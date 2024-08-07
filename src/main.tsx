@@ -5,7 +5,7 @@ import { Layout } from "./components/Layout.tsx";
 import { IndexPage } from "./pages/index.tsx";
 import { DrumMachinePage } from "./pages/drum-machine.tsx";
 import { AppContextProvider } from "./app-context.tsx";
-import { AppContextLoader } from "./components/AppContextLoader.tsx";
+import { UserActivationLoader } from "./components/UserActivationLoader.tsx";
 
 const router = createBrowserRouter([
   {
@@ -15,9 +15,9 @@ const router = createBrowserRouter([
   {
     path: "/drum-machine",
     element: (
-      <AppContextLoader>
+      <UserActivationLoader>
         <DrumMachinePage />
-      </AppContextLoader>
+      </UserActivationLoader>
     ),
   },
 ]);
