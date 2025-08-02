@@ -22,9 +22,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box>
       <Heading display="flex" bg="#00a4ff" p="16px" color="white">
-        <Link to="/">
-          <Image src="9h-logo.svg" maxH="50px"></Image>
-        </Link>
+        <Box as={Link} to="/">
+          <Image src="/9h-logo.svg" h="50px" />
+        </Box>
 
         {appContext.loaded && (
           <Box ml="auto">
