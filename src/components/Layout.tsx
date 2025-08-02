@@ -1,6 +1,7 @@
 import { Box, Button, Heading, Image } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { AppContext } from "../app-context";
+import { Link } from "react-router-dom";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [playing, setPlaying] = useState(false);
@@ -21,7 +22,9 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Box>
       <Heading display="flex" bg="#00a4ff" p="16px" color="white">
-        <Image src="9h-logo.svg" maxH="50px"></Image>
+        <Link to="/">
+          <Image src="9h-logo.svg" maxH="50px"></Image>
+        </Link>
 
         {appContext.loaded && (
           <Box ml="auto">
