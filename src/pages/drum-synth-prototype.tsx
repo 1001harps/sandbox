@@ -1,8 +1,7 @@
-import { Button, Grid } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../app-context";
-import { DrumSynthPrototype } from "../devices/drum-synth-prototype";
-import { useStepState } from "../react-utils";
+import { AppContext } from "../app-context.tsx";
+import { DrumSynthPrototype } from "../devices/drum-synth-prototype.ts";
+import { useStepState } from "../react-utils.ts";
 
 const STEPS = 16;
 const CHANNELS = 8;
@@ -17,9 +16,9 @@ export const DrumSynthPrototypePage = () => {
     if (!scheduler) return;
 
     const onStep = (ts: number) => {
-      setCurrentStep((prev) => {
+      setCurrentStep((prev: number) => {
         const nextStep = (prev + 1) % STEPS;
-        steps.forEach((channelSteps, channelIndex) => {
+        steps.forEach((channelSteps: boolean[], channelIndex: number) => {
           if (channelSteps[nextStep]) {
             drumSynth.trigger(channelIndex, ts);
           }
@@ -35,13 +34,29 @@ export const DrumSynthPrototypePage = () => {
     };
   }, [scheduler]);
 
+  const getButtonClasses = (channelIndex: number, stepIndex: number) => {
+    const baseClasses =
+      "w-4 h-4 border border-gray-300 transition-colors duration-150";
+
+    if (stepIndex === currentStep) {
+      return `${baseClasses} bg-red-500 hover:bg-red-600`;
+    }
+
+    if (steps[channelIndex][stepIndex]) {
+      return `${baseClasses} bg-blue-500 hover:bg-blue-600`;
+    }
+
+    return `${baseClasses} bg-gray-200 hover:bg-gray-300`;
+  };
+
   return (
     <>
-      <Grid
-        w="300px"
-        gap="3px"
-        templateColumns={`repeat(${STEPS}, 1fr)`}
-        templateRows={`repeat(${CHANNELS}, 1fr)`}
+      <div
+        className="inline-grid gap-1 w-80"
+        style={{
+          gridTemplateColumns: `repeat(${STEPS}, 1fr)`,
+          gridTemplateRows: `repeat(${CHANNELS}, 1fr)`,
+        }}
       >
         {new Array(CHANNELS)
           .fill(null)
@@ -49,21 +64,14 @@ export const DrumSynthPrototypePage = () => {
             new Array(STEPS)
               .fill(null)
               .map((_, stepIndex) => (
-                <Button
+                <button
                   key={channelIndex + "_" + stepIndex}
-                  className="step-button"
+                  className={getButtonClasses(channelIndex, stepIndex)}
                   onClick={() => toggleStep(channelIndex, stepIndex)}
-                  colorScheme={
-                    stepIndex === currentStep
-                      ? "red"
-                      : steps[channelIndex][stepIndex]
-                      ? "blue"
-                      : "gray"
-                  }
-                ></Button>
+                ></button>
               ))
           )}
-      </Grid>
+      </div>
     </>
   );
 };

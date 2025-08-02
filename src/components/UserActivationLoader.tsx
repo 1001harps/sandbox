@@ -1,6 +1,5 @@
-import { Button, Flex } from "@chakra-ui/react";
 import { useContext, useEffect, useState } from "react";
-import { AppContext } from "../app-context";
+import { AppContext } from "../app-context.tsx";
 
 const userActivationEvents = [
   "keydown",
@@ -43,7 +42,7 @@ export const UserActivationLoader = ({
   children,
 }: UserActivationLoaderProps) => {
   const [hasBeenActive, setHasBeenActive] = useState(
-    !!window?.navigator.userActivation.hasBeenActive
+    !!globalThis?.navigator.userActivation.hasBeenActive
   );
 
   const appContext = useContext(AppContext);
@@ -81,11 +80,14 @@ export const UserActivationLoader = ({
 
   if (!hasBeenActive) {
     return (
-      <Flex w="100%" h="100%">
-        <Button m="auto" onClick={handleLoadClick}>
+      <div className="w-full h-full flex">
+        <button
+          className="m-auto bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition-colors"
+          onClick={handleLoadClick}
+        >
           load
-        </Button>
-      </Flex>
+        </button>
+      </div>
     );
   }
 

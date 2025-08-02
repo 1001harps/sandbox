@@ -1,6 +1,5 @@
-import { Box, Button, Heading, Image } from "@chakra-ui/react";
 import { useContext, useState } from "react";
-import { AppContext } from "../app-context";
+import { AppContext } from "../app-context.tsx";
 import { Link } from "react-router-dom";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -20,24 +19,25 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <Box>
-      <Heading display="flex" bg="#00a4ff" p="16px" color="white">
-        <Box as={Link} to="/">
-          <Image src="/9h-logo.svg" h="50px" />
-        </Box>
+    <div>
+      <header className="flex bg-[#00a4ff] p-4 text-white">
+        <Link to="/">
+          <img src="/9h-logo.svg" alt="Logo" className="h-12" />
+        </Link>
 
         {appContext.loaded && (
-          <Box ml="auto">
-            <Button onClick={togglePlaying}>
+          <div className="ml-auto">
+            <button
+              onClick={togglePlaying}
+              className="bg-white text-[#00a4ff] px-4 py-2 rounded hover:bg-gray-100 transition-colors"
+            >
               {playing ? "pause" : "play"}
-            </Button>
-          </Box>
+            </button>
+          </div>
         )}
-      </Heading>
+      </header>
 
-      <Box p="16px" as="main">
-        {children}
-      </Box>
-    </Box>
+      <main className="p-4">{children}</main>
+    </div>
   );
 };
